@@ -8,6 +8,8 @@ import FeaturedBlogs from '../Pages/FeaturedBlogs';
 import Wishlist from '../Pages/Wishlist';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
+import BlogDetails from '../Pages/BlogDetails';
+import UpdateBlog from '../Pages/UpdateBlog';
 
 export const router = createBrowserRouter([
     {
@@ -33,6 +35,14 @@ export const router = createBrowserRouter([
         {
             path: "/wishlist",
             element: <Wishlist></Wishlist>
+        },
+        {
+            path: "/blogs/:id",
+            element: <BlogDetails></BlogDetails>
+        },
+        {
+            path: "/updateblog/:id",
+            element: <UpdateBlog></UpdateBlog>
         }
       ]
     },

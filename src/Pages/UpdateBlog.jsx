@@ -1,21 +1,13 @@
-import React from "react";
+import React from 'react';
 import useAuth from '../Hooks/useAuth';
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { toast } from "react-toastify";
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
-const AddBlog = () => {
-    const {user} = useAuth()
-    // const { data } = useQuery({
-    //     queryKey: ['addblogdata'],
-    //     queryFn: () =>
-    //     axios.post('/addblog', {
-    //         firstName: 'Fred',
-    //         lastName: 'Flintstone'
-    //       })
-    //       .then(response => response.data),
-    //   })
-    const handleSubmit = e => {
+const UpdateBlog = () => {
+    const {id }= useParams()
+    const handleUpdate = e => {
         e.preventDefault();
         const form = e.target; 
         const title = form.title.value;
@@ -23,22 +15,34 @@ const AddBlog = () => {
         const category = form.category.value;
         const short = form.short.value;
         const long = form.long.value;
-        const email = user.email;
-        const time = Date.now();
-        const newBlog = {title, image, category, short, long, email, time}
-        axios.post('http://localhost:5000/addblog', newBlog)
+        const updatedBlog = {title, image, category, short, long}
+        axios.put(`http://localhost:5000/updateblog/${id}`, updatedBlog)
         .then(res => {
-            if(res.data.insertedId){
-                toast('Blog successfully added')
+            if(res.data.modifiedCount > 0){
+                toast('blog updated successfully')
             }
         })
 
 
     }
-  return (
-    <div className="max-w-[1260px] mx-auto my-20">
-        <h2 className="text-center font-bold text-3xl">Add Blog</h2>
-      <form onSubmit={handleSubmit} className="card-body">
+    const {data, isLoading, refetch} = useQuery({
+        queryKey: ['singleBlogData'],
+        queryFn: () => 
+            axios.get(`http://localhost:5000/blogs/${id}`)
+            .then(res => res.data)
+    })
+    if(isLoading){
+        return (
+            <div>
+                <progress className="progress w-56" value="100" max="100"></progress>
+            </div>
+        );
+    }
+    const {title, image, category, short, long} = data; 
+    return (
+        <div className="max-w-[1260px] mx-auto my-20">
+        <h2 className="text-center font-bold text-3xl">Update Blog</h2>
+      <form onSubmit={handleUpdate} className="card-body">
         <div className="flex lg:gap-5 flex-col lg:flex-row">
             <div className="form-control flex-1">
               <label className="label">
@@ -46,6 +50,7 @@ const AddBlog = () => {
               </label>
               <input
                 type="text"
+                defaultValue={title}
                 placeholder="Blog Title"
                 className="input input-bordered"
                 name="title"
@@ -58,6 +63,7 @@ const AddBlog = () => {
               </label>
               <input
                 type="text"
+                defaultValue={image}
                 placeholder="Image URL"
                 className="input input-bordered"
                 name="image"
@@ -85,6 +91,7 @@ const AddBlog = () => {
               </label>
               <input
                 type="text"
+                defaultValue={short}
                 placeholder="Short Description"
                 className="input input-bordered"
                 name="short"
@@ -96,13 +103,13 @@ const AddBlog = () => {
           <label className="label">
             <span className="label-text">Long Description</span>
           </label>
-          <textarea className="textarea textarea-bordered"  rows="6"  placeholder="Long Description" name="long"></textarea>
+          <textarea className="textarea textarea-bordered"  rows="6" placeholder="Long Description" name="long" defaultValue={long}></textarea>
         </div>
-       <input className="btn normal-case text-lg font-semibold bg-orange-600 text-white my-5" type="submit" value="Submit" />
+       <input className="btn normal-case text-lg font-semibold bg-orange-600 text-white my-5" type="submit" value="Update" />
    
       </form>
     </div>
-  );
+    );
 };
 
-export default AddBlog;
+export default UpdateBlog;
