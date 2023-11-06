@@ -3,13 +3,12 @@ import React from 'react';
 const Banner = () => {
     return (
         <div>
-            <div className="hero min-h-screen" style={{backgroundImage: 'url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)'}}>
+            <div className="hero min-h-[500px]" style={{backgroundImage: 'url(https://i.ibb.co/LhbTpZf/retrosupply-j-Lw-VAUt-LOAQ-unsplash.jpg)'}}>
   <div className="hero-overlay bg-opacity-60"></div>
   <div className="hero-content text-center text-neutral-content">
     <div className="max-w-md">
-      <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-      <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-      <button className="btn btn-primary">Get Started</button>
+      <h1 className="mb-5 text-5xl font-bold">The Blog Hub: Navigating the Real World</h1>
+      <p className="mb-5">Discover the unfiltered truth of everyday life, explore personal growth, relationships, and well-being, and find inspiration for your unique journey.</p>
     </div>
   </div>
 </div>
