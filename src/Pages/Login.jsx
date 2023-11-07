@@ -54,10 +54,10 @@ const LogIn = () => {
       e.target.reset();
   };
   return (
-    <div className="min-h-screen mt-20 md:mt-0 py-20 bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 flex justify-center items-center">
+    <div className="min-h-screen mt-20 md:mt-0 py-20 bg-gradient-to-r from-cyan-500 to-blue-500 flex justify-center items-center">
       <div className="flex items-center justify-center">
         <div>
-          <h2 className="text-5xl font-bold mb-10 text-center">Login Now</h2>
+          <h2 className="text-5xl font-bold mb-10 text-center text-white">Login Now</h2>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form onSubmit={handleLogIn} className="card-body">
               <div className="form-control">
@@ -86,7 +86,7 @@ const LogIn = () => {
               </div>
               <div className="form-control mt-6">
                 <input
-                  className="btn bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 text-white normal-case text-xl"
+                  className="btn  bg-gradient-to-r from-cyan-500 to-blue-500 text-white normal-case text-xl"
                   type="submit"
                   value="Login"
                 />

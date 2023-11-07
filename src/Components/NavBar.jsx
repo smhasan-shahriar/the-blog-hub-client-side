@@ -17,18 +17,24 @@ const NavBar = () => {
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
-      <li>
+      {
+        user &&  <li>
         <NavLink to="/addblog">Add Blog</NavLink>
       </li>
+      }
+     
       <li>
         <NavLink to="/allblogs">All Blogs</NavLink>
       </li>
       <li>
         <NavLink to="/featuredblogs">Featured Blogs</NavLink>
       </li>
-      <li>
+      {
+        user && <li>
         <NavLink to="/wishlist">Wishlist</NavLink>
       </li>
+      }
+      
     </>
   );
   return (

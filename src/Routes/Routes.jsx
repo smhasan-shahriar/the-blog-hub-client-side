@@ -10,11 +10,14 @@ import Login from '../Pages/Login';
 import Register from '../Pages/Register';
 import BlogDetails from '../Pages/BlogDetails';
 import UpdateBlog from '../Pages/UpdateBlog';
+import ErrorPage from '../Pages/ErrorPage';
+import PrivateRoutes from './PrivateRoutes';
 
 export const router = createBrowserRouter([
     {
       path: "/",
       element: <MainLayout></MainLayout>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
             path: "/",
@@ -22,7 +25,7 @@ export const router = createBrowserRouter([
         },
         {
             path: "/addblog",
-            element: <AddBlog></AddBlog>
+            element: <PrivateRoutes><AddBlog></AddBlog></PrivateRoutes> 
         },
         {
             path: "/allblogs",
@@ -34,25 +37,25 @@ export const router = createBrowserRouter([
         },
         {
             path: "/wishlist",
-            element: <Wishlist></Wishlist>
+            element: <PrivateRoutes><Wishlist></Wishlist></PrivateRoutes> 
         },
         {
             path: "/blogs/:id",
-            element: <BlogDetails></BlogDetails>
+            element: <PrivateRoutes><BlogDetails></BlogDetails></PrivateRoutes> 
         },
         {
             path: "/updateblog/:id",
-            element: <UpdateBlog></UpdateBlog>
+            element: <PrivateRoutes><UpdateBlog></UpdateBlog></PrivateRoutes> 
+        },
+        {
+            path: "/login",
+            element: <Login></Login>
+        },
+        {
+            path: "/register",
+            element: <Register></Register>
         }
       ]
-    },
-    {
-        path: "/login",
-        element: <Login></Login>
-    },
-    {
-        path: "/register",
-        element: <Register></Register>
     }
   ]);
 

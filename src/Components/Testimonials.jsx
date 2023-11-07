@@ -25,7 +25,7 @@ const Testimonials = () => {
           </div>
           <div className="bg-orange-600 pt-20 pb-10 px-5 text-white">
             <p className="text-center quoted-text text-xl font-semibold italic">The blog hub has become my go-to resource. The engaging articles and valuable tips have improved my life. Thank you for the inspiration and knowledge you provide.</p>
-            <p className="font-medium text-lg text-center my-5"><span className="text-[#a6ff00] font-bold text-xl">Ms. Tanya</span> CEO of SHEBA</p>
+            <p className="font-medium text-lg text-center my-5"><span className="text-[#a6ff00] font-bold text-xl">Ms. Tanya</span> COO of Rodrig Inc.</p>
           </div>
         </div>
         <div className="flex flex-col justify-center items-center">
@@ -36,7 +36,7 @@ const Testimonials = () => {
           </div>
           <div className="bg-orange-600 pt-20 pb-10 px-5 text-white">
             <p className="text-center quoted-text text-xl font-semibold italic">I'm a loyal reader because the blog hub offers a perfect blend of information and inspiration. It's my daily dose of wisdom and motivation. Kudos to your fantastic work!</p>
-            <p className="font-medium text-lg text-center my-5"><span className="text-[#a6ff00] font-bold text-xl">Ms. Xepher</span> CEO of SHEBA</p>
+            <p className="font-medium text-lg text-center my-5"><span className="text-[#a6ff00] font-bold text-xl">Ms. Xepher</span> President of Xepher Inc.</p>
           </div>
         </div>
 
