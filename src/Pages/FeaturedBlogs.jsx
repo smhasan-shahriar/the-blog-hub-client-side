@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
-import { Table } from "ka-table";
-import { DataType, SortingMode } from "ka-table/enums";
+import { CompactTable } from "@table-library/react-table-library/compact";
+import { useTheme } from "@table-library/react-table-library/theme";
+import { getTheme } from "@table-library/react-table-library/baseline";
 
 const FeaturedBlogs = () => {
+  const theme = useTheme(getTheme());
   const featuredBlogs = useQuery({
     queryKey: ["featuredData"],
     queryFn: () =>
@@ -37,12 +39,14 @@ const FeaturedBlogs = () => {
     );
   }
   console.log(featuredBlogs.data, users.data);
-  const featuredBlogsArray = featuredBlogs.data.map((item1) => {
+  const featuredBlogsArray = featuredBlogs.data.map((item1, index) => {
     const matchingItem2 = users.data.find(
       (item2) => item2.userEmail === item1.email
     );
     if (matchingItem2) {
       return {
+        id: index,
+        serial: index + 1,
         title: item1.title,
         userName: matchingItem2.userName,
         picture: matchingItem2.userImage,
@@ -51,31 +55,35 @@ const FeaturedBlogs = () => {
     return null;
   });
   console.log(featuredBlogsArray);
-  const dataArray = featuredBlogsArray.map((item, index) => ({
-    serial: `${index + 1}`,
-    blog_title: `${item.title}`,
-    userName: `${item.userName}`,
-    userImage: `${item.picture}`,
-    id: index,
-  }));
+  const nodes = [
+    {
+     
+      name: "Shopping List 1",
+      type: "TASK",
+      isComplete: true,
+    },
+    {
+     
+      name: "Shopping List 2",
+      type: "TASK",
+      isComplete: true,
+    },
+  ];
+  console.log(nodes);
+  const COLUMNS = [
+    { label: "Serial", renderCell: (item) => item.name },
+
+    { label: "Blog Title", renderCell: (item) => item.type },
+    { label: "User Name", renderCell: (item) => item.type },
+
+    { label: "User Image", renderCell: (item) => item.nodes },
+  ];
+  const data = { nodes };
+
   return (
     <div className="max-w-[1260px] mx-auto my-20">
       <h2 className="text-center font-bold text-3xl">Featured Blogs</h2>
-      <Table
-        columns={[
-          { key: "serial", title: "Serial", dataType: DataType.String },
-          { key: "blog_title", title: "Blog Title", dataType: DataType.String },
-          { key: "userName", title: "User Name", dataType: DataType.String },
-          {
-            key: "userImage",
-            title: "User Picture",
-            dataType: DataType.String,
-          },
-        ]}
-        data={dataArray}
-        rowKeyField={"id"}
-        sortingMode={SortingMode.Single}
-      />
+      <CompactTable columns={COLUMNS} data={data} theme={theme} />
     </div>
   );
 };
