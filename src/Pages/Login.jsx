@@ -1,20 +1,18 @@
 import React, { useContext } from "react";
 import { AiOutlineGoogle } from "react-icons/ai";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import useAuth from "../Hooks/useAuth";
 import axios from "axios";
-
 
 const LogIn = () => {
   const { logIn, socialLogIn } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const handleSocialLogin = () => {
-    
     socialLogIn()
-    .then(result =>{
+      .then((result) => {
         console.log(result.user);
         navigate(location?.state ? location.state : "/");
         const newUser = result.user;
@@ -24,19 +22,18 @@ const LogIn = () => {
           userImage: newUser.photoURL,
         };
         axios
-          .post("http://localhost:5000/users", userEntry)
+          .post("https://the-blog-hub-server.vercel.app/users", userEntry)
           .then((res) => {
             if (res.data.insertedId) {
               toast("You have successfully logged in with Google");
             }
           });
-
-    })
-    .catch(error => {
-        console.log(error.message)
-        toast(error.message)
-    })
-  }  
+      })
+      .catch((error) => {
+        console.log(error.message);
+        toast(error.message);
+      });
+  };
   const handleLogIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -46,18 +43,20 @@ const LogIn = () => {
       .then((result) => {
         console.log(result.user);
         navigate(location?.state ? location.state : "/");
-        toast('You have successfully logged in')
+        toast("You have successfully logged in");
       })
       .catch((error) => {
         toast(error.message);
       });
-      e.target.reset();
+    e.target.reset();
   };
   return (
     <div className="min-h-screen mt-20 md:mt-0 py-20 bg-gradient-to-r from-cyan-500 to-blue-500 flex justify-center items-center">
       <div className="flex items-center justify-center">
         <div>
-          <h2 className="text-5xl font-bold mb-10 text-center text-white">Login Now</h2>
+          <h2 className="text-5xl font-bold mb-10 text-center text-white">
+            Login Now
+          </h2>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form onSubmit={handleLogIn} className="card-body">
               <div className="form-control">

@@ -14,20 +14,19 @@ const Register = () => {
       .then((result) => {
         console.log(result.user);
         const newUser = result.user;
-              const userEntry = {
-                userName: newUser.displayName,
-                userEmail: newUser.email,
-                userImage: newUser.photoURL,
-              };
-              axios
-                .post("http://localhost:5000/users", userEntry)
-                .then((res) => {
-                  if (res.data.insertedId) {
-                    toast("You have successfully registered with Google");
-                    navigate('/');
-                  }
-                });
-      
+        const userEntry = {
+          userName: newUser.displayName,
+          userEmail: newUser.email,
+          userImage: newUser.photoURL,
+        };
+        axios
+          .post("https://the-blog-hub-server.vercel.app/users", userEntry)
+          .then((res) => {
+            if (res.data.insertedId) {
+              toast("You have successfully registered with Google");
+              navigate("/");
+            }
+          });
       })
       .catch((error) => {
         console.log(error.message);
@@ -63,11 +62,11 @@ const Register = () => {
                 userImage: newUser.photoURL,
               };
               axios
-                .post("http://localhost:5000/users", userEntry)
+                .post("https://the-blog-hub-server.vercel.app/users", userEntry)
                 .then((res) => {
                   if (res.data.insertedId) {
                     toast("You have successfully registered");
-                    navigate('/')
+                    navigate("/");
                   }
                 });
             })
@@ -84,7 +83,9 @@ const Register = () => {
     <div className="min-h-screen mt-20 md:mt-0 py-20  bg-gradient-to-r from-cyan-500 to-blue-500 flex justify-center items-center">
       <div className="flex items-center justify-center">
         <div>
-          <h2 className="text-5xl font-bold mb-10 text-center text-white">Register Now</h2>
+          <h2 className="text-5xl font-bold mb-10 text-center text-white">
+            Register Now
+          </h2>
           <div className="card flex-shrink-0  w-full md:min-w-[500px] shadow-2xl bg-base-100">
             <form onSubmit={handleRegister} className="card-body">
               <div className="form-control">
