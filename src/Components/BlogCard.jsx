@@ -23,7 +23,7 @@ const BlogCard = ({ blog }) => {
   };
   return (
     <div>
-      <div className="card card-compact  h-[500px] bg-base-100 shadow-xl">
+      <div className="card card-compact h-[500px] bg-base-100 shadow-xl">
         <figure>
           <img className="w-full h-[250px] object-cover" src={image} />
         </figure>

@@ -72,7 +72,7 @@ const Wishlist = () => {
   return (
     <div className="max-w-[1260px] mx-auto my-20">
       <h2 className="text-center font-bold text-3xl">Wishlist</h2>
-      <div className="grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-5 my-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-5 my-10">
         {wishListBlogs.map((blog, index) => (
           <WishListCard key={index} blog={blog} handleDelete={handleDelete}></WishListCard>
         ))}

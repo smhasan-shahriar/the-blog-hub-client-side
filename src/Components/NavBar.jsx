@@ -70,8 +70,8 @@ const NavBar = () => {
             }
           
           </div>
-          <img className="w-12" src="https://i.ibb.co/VT2mhg5/icons8-blog-96.png" alt="" />
-          <a className="btn btn-ghost normal-case text-xl">The Blog Hub</a>
+          <img className="md:w-12 w-8" src="https://i.ibb.co/VT2mhg5/icons8-blog-96.png" alt="" />
+          <a className="normal-case font-bold lg:text-lg">The Blog Hub</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>

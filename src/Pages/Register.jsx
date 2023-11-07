@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import AuthProvider, { AuthContext } from "../Providers/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,6 +8,7 @@ import axios from "axios";
 
 const Register = () => {
   const { createUser, updateUserProfile, socialLogIn } = useAuth();
+  const navigate = useNavigate();
   const handleSocialLogin = () => {
     socialLogIn()
       .then((result) => {
@@ -23,6 +24,7 @@ const Register = () => {
                 .then((res) => {
                   if (res.data.insertedId) {
                     toast("You have successfully registered with Google");
+                    navigate('/');
                   }
                 });
       
@@ -65,6 +67,7 @@ const Register = () => {
                 .then((res) => {
                   if (res.data.insertedId) {
                     toast("You have successfully registered");
+                    navigate('/')
                   }
                 });
             })

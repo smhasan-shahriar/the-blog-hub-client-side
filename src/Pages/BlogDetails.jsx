@@ -70,7 +70,7 @@ const BlogDetails = () => {
       )}
      
       <div>
-      <h2 className="text-center font-bold text-3xl">Comments Section</h2>
+      <h2 className="text-center font-bold text-3xl mt-10">Comments Section</h2>
       <div>
           {user && user?.email !== email ? (
             <div>

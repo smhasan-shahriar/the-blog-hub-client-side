@@ -32,6 +32,9 @@ const AllBlogs = () => {
     setFilter(filter);
   };
 
+  const handleFilterChange = e => {
+    setFilter(e.target.value)
+  }
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
 };
@@ -40,8 +43,8 @@ const AllBlogs = () => {
     <div className="max-w-[1260px] mx-auto my-20">
       <h2 className="text-center font-bold text-3xl">All Blogs</h2>
      
-        <div className="h-[50px] rounded-lg text-right my-5">
-          <form onSubmit={handleSubmit} className="mx-auto flex justify-between">
+        <div className="h-[50px] rounded-lg lg:text-right my-5">
+          <form onSubmit={handleSubmit} className="mx-auto flex justify-between items-center flex-col lg:flex-row gap-5">
             <div className="flex items-center gap-3">
               <label className="label">
                 <span className="label-text">Filter by Category</span>
@@ -59,6 +62,7 @@ const AllBlogs = () => {
             <div>
                 <input
                   name="search"
+                  onChange={handleFilterChange}
                   className="text-sm p-4 md:w-[360px] w-[220px] border"
                   type="text"
                   placeholder="Search by title"
@@ -72,7 +76,7 @@ const AllBlogs = () => {
           </form>
 
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-5 my-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-5 my-20">
       {filter === '' && selectedCategory === '' ? (
                     data.map((blog) => <BlogCard key={blog._id} blog={blog} />)
                 ) : (
