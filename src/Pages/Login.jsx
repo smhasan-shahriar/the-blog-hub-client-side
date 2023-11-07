@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useAuth from "../Hooks/useAuth";
+import axios from "axios";
 
 
 const LogIn = () => {
@@ -16,7 +17,19 @@ const LogIn = () => {
     .then(result =>{
         console.log(result.user);
         navigate(location?.state ? location.state : "/");
-        toast('You have successfully logged in');
+        const newUser = result.user;
+        const userEntry = {
+          userName: newUser.displayName,
+          userEmail: newUser.email,
+          userImage: newUser.photoURL,
+        };
+        axios
+          .post("http://localhost:5000/users", userEntry)
+          .then((res) => {
+            if (res.data.insertedId) {
+              toast("You have successfully logged in with Google");
+            }
+          });
 
     })
     .catch(error => {
