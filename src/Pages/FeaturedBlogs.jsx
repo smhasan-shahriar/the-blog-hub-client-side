@@ -79,7 +79,7 @@ const FeaturedBlogs = () => {
     {
       label: "Blog Owner's Picture",
       renderCell: (item) => (
-        <img className="w-12 h-12 rounded-full" src={item.picture}></img>
+        <img className="w-12 h-12 rounded-full object-cover" src={item.picture}></img>
       ),
     },
   ];
