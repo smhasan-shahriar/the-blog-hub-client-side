@@ -58,6 +58,7 @@ const BlogDetails = () => {
         if (res.data.insertedId) {
           toast("Comment successfully posted");
           comments.refetch();
+          form.reset();
         }
       });
   };
@@ -81,9 +82,10 @@ const BlogDetails = () => {
       )}
 
       <div>
-        <h2 className="text-center font-bold text-3xl mt-10">
-          Comments Section
+        <h2 className="text-left font-bold text-3xl mt-10 my-2">
+          Comments: {comments.data.length}
         </h2>
+        <hr className="border-2 my-2"/>
         <div>
           {user && user?.email !== email ? (
             <div>
