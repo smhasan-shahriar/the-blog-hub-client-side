@@ -19,17 +19,13 @@ const FeaturedBlogs = () => {
   const featuredBlogs = useQuery({
     queryKey: ["featuredData"],
     queryFn: () =>
-      axios
-        .get("https://the-blog-hub-server.vercel.app/featured")
-        .then((res) => res.data),
+      axios.get("http://localhost:5000/featured").then((res) => res.data),
   });
 
   const users = useQuery({
     queryKey: ["userData"],
     queryFn: () =>
-      axios
-        .get(`https://the-blog-hub-server.vercel.app/users`)
-        .then((res) => res.data),
+      axios.get(`http://localhost:5000/users`).then((res) => res.data),
   });
 
   if (featuredBlogs.isLoading) {
@@ -75,16 +71,15 @@ const FeaturedBlogs = () => {
       renderCell: (item) => (
         <img className="w-12 h-12 rounded-full" src={item.picture}></img>
       ),
-    }
+    },
   ];
   const data = { nodes };
- const resize = { minWidth: 25 };
+  const resize = { minWidth: 25 };
   return (
     <div className="max-w-[1260px] mx-auto my-20">
       <h2 className="text-center font-bold text-3xl">Featured Blogs</h2>
       <div className="my-10">
         <CompactTable columns={COLUMNS} data={data} theme={theme} />
-        
       </div>
     </div>
   );

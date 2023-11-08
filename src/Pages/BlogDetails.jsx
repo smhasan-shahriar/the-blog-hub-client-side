@@ -5,24 +5,22 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { toast } from "react-toastify";
 import CommentCard from "../Components/CommentCard";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const BlogDetails = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { id } = useParams();
+  const axiosSecure = useAxiosSecure();
   const blogDetails = useQuery({
     queryKey: ["singleBlogData"],
     queryFn: () =>
-      axios
-        .get(`https://the-blog-hub-server.vercel.app/blogs/${id}`)
-        .then((res) => res.data),
+      axiosSecure.get(`/blogs/${id}`).then((res) => res.data),
   });
   const comments = useQuery({
     queryKey: ["commentsData"],
     queryFn: () =>
-      axios
-        .get(`https://the-blog-hub-server.vercel.app/comments/${id}`)
-        .then((res) => res.data),
+      axiosSecure.get(`/comments/${id}`).then((res) => res.data),
   });
   if (blogDetails.isLoading) {
     return (
@@ -49,14 +47,12 @@ const BlogDetails = () => {
       userName: user.displayName,
       userImage: user.photoURL,
     };
-    axios
-      .post("https://the-blog-hub-server.vercel.app/comments", userComment)
-      .then((res) => {
-        if (res.data.insertedId) {
-          toast("Comment successfully posted");
-          comments.refetch();
-        }
-      });
+    axios.post("http://localhost:5000/comments", userComment).then((res) => {
+      if (res.data.insertedId) {
+        toast("Comment successfully posted");
+        comments.refetch();
+      }
+    });
   };
   console.log(comments.data);
   return (

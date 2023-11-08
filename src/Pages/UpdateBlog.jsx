@@ -17,10 +17,7 @@ const UpdateBlog = () => {
     const long = form.long.value;
     const updatedBlog = { title, image, category, short, long };
     axios
-      .put(
-        `https://the-blog-hub-server.vercel.app/updateblog/${id}`,
-        updatedBlog
-      )
+      .put(`http://localhost:5000/updateblog/${id}`, updatedBlog)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           toast("blog updated successfully");
@@ -30,9 +27,7 @@ const UpdateBlog = () => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["singleBlogData"],
     queryFn: () =>
-      axios
-        .get(`https://the-blog-hub-server.vercel.app/blogs/${id}`)
-        .then((res) => res.data),
+      axios.get(`http://localhost:5000/blogs/${id}`).then((res) => res.data),
   });
   if (isLoading) {
     return (

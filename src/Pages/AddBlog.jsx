@@ -3,6 +3,7 @@ import useAuth from "../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const AddBlog = () => {
   const { user } = useAuth();
@@ -15,6 +16,7 @@ const AddBlog = () => {
   //       })
   //       .then(response => response.data),
   //   })
+  const axiosSecure = useAxiosSecure();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -26,13 +28,12 @@ const AddBlog = () => {
     const email = user.email;
     const time = Date.now();
     const newBlog = { title, image, category, short, long, email, time };
-    axios
-      .post("https://the-blog-hub-server.vercel.app/addblog", newBlog)
-      .then((res) => {
-        if (res.data.insertedId) {
-          toast("Blog successfully added");
-        }
-      });
+    axiosSecure.post("/addblog", newBlog).then((res) => {
+      if (res.data.insertedId) {
+        toast("Blog successfully added");
+      }
+      
+    })
   };
   return (
     <div className="max-w-[1260px] mx-auto my-20">

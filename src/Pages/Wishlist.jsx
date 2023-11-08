@@ -10,17 +10,13 @@ const Wishlist = () => {
   const allBlogs = useQuery({
     queryKey: ["blogsData"],
     queryFn: () =>
-      axios
-        .get("https://the-blog-hub-server.vercel.app/allblogs")
-        .then((res) => res.data),
+      axios.get("http://localhost:5000/allblogs").then((res) => res.data),
   });
 
   const emailQuery = useQuery({
     queryKey: ["wishlistData"],
     queryFn: () =>
-      axios
-        .get(`https://the-blog-hub-server.vercel.app/wishlist`)
-        .then((res) => res.data),
+      axios.get(`http://localhost:5000/wishlist`).then((res) => res.data),
   });
 
   if (allBlogs.isLoading) {
@@ -57,7 +53,7 @@ const Wishlist = () => {
     const email = user.email;
     const myRef = { email };
     console.log(email);
-    fetch(`https://the-blog-hub-server.vercel.app/wishlist/${id}`, {
+    fetch(`http://localhost:5000/wishlist/${id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

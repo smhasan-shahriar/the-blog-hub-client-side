@@ -14,6 +14,11 @@ const LogIn = () => {
     socialLogIn()
       .then((result) => {
         console.log(result.user);
+        const loggedUser = { email: result.user.email };
+        axios.post('http://localhost:5000/jwt', loggedUser, { withCredentials: true })
+                    .then(res => {
+                        console.log('token response', res.data);
+                    })
         navigate(location?.state ? location.state : "/");
         const newUser = result.user;
         const userEntry = {
@@ -21,13 +26,11 @@ const LogIn = () => {
           userEmail: newUser.email,
           userImage: newUser.photoURL,
         };
-        axios
-          .post("https://the-blog-hub-server.vercel.app/users", userEntry)
-          .then((res) => {
-            if (res.data.insertedId) {
-              toast("You have successfully logged in with Google");
-            }
-          });
+        axios.post("http://localhost:5000/users", userEntry).then((res) => {
+          if (res.data.insertedId) {
+            toast("You have successfully logged in with Google");
+          }
+        });
       })
       .catch((error) => {
         console.log(error.message);
@@ -42,7 +45,12 @@ const LogIn = () => {
     logIn(email, password)
       .then((result) => {
         console.log(result.user);
+        const loggedUser = { email: result.user.email };
         navigate(location?.state ? location.state : "/");
+        axios.post('http://localhost:5000/jwt', loggedUser, { withCredentials: true })
+                    .then(res => {
+                        console.log('token response', res.data);
+                    })
         toast("You have successfully logged in");
       })
       .catch((error) => {

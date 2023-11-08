@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 const BlogCard = ({ blog }) => {
   const { user } = useAuth();
@@ -17,22 +17,23 @@ const BlogCard = ({ blog }) => {
       const blogId = _id;
       const userEmail = user.email;
       const wishList = { blogId, userEmail };
-      axios
-        .post("https://the-blog-hub-server.vercel.app/wishlist", wishList)
-        .then((res) => {
-          if (res.data.insertedId) {
-            toast("Blog added to wishlist successfully");
-          }
-        });
+      axios.post("http://localhost:5000/wishlist", wishList).then((res) => {
+        if (res.data.insertedId) {
+          toast("Blog added to wishlist successfully");
+        }
+      });
     } else {
       toast("You have to log in to add blog to your wishlist");
     }
   };
   return (
     <div>
-      <motion.div whileHover={{ scale: 1.1 }}
-  onHoverStart={e => {}}
-  onHoverEnd={e => {}} className="card card-compact h-[500px] bg-base-100 shadow-xl">
+      <motion.div
+        whileHover={{ scale: 1.1 }}
+        onHoverStart={(e) => {}}
+        onHoverEnd={(e) => {}}
+        className="card card-compact h-[500px] bg-base-100 shadow-xl"
+      >
         <figure>
           <img className="w-full h-[250px] object-cover" src={image} />
         </figure>

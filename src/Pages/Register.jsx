@@ -13,20 +13,23 @@ const Register = () => {
     socialLogIn()
       .then((result) => {
         console.log(result.user);
+        const loggedUser = { email: result.user.email };
+        axios.post('http://localhost:5000/jwt', loggedUser, { withCredentials: true })
+                    .then(res => {
+                        console.log('token response', res.data);
+                    })
         const newUser = result.user;
         const userEntry = {
           userName: newUser.displayName,
           userEmail: newUser.email,
           userImage: newUser.photoURL,
         };
-        axios
-          .post("https://the-blog-hub-server.vercel.app/users", userEntry)
-          .then((res) => {
-            if (res.data.insertedId) {
-              toast("You have successfully registered with Google");
-              navigate("/");
-            }
-          });
+        axios.post("http://localhost:5000/users", userEntry).then((res) => {
+          if (res.data.insertedId) {
+            toast("You have successfully registered with Google");
+            navigate("/");
+          }
+        });
       })
       .catch((error) => {
         console.log(error.message);
@@ -56,13 +59,18 @@ const Register = () => {
           updateUserProfile(name, image)
             .then(() => {
               const newUser = result.user;
+              const loggedUser = { email: result.user.email };
+        axios.post('http://localhost:5000/jwt', loggedUser, { withCredentials: true })
+                    .then(res => {
+                        console.log('token response', res.data);
+                    })
               const userEntry = {
                 userName: newUser.displayName,
                 userEmail: newUser.email,
                 userImage: newUser.photoURL,
               };
               axios
-                .post("https://the-blog-hub-server.vercel.app/users", userEntry)
+                .post("http://localhost:5000/users", userEntry)
                 .then((res) => {
                   if (res.data.insertedId) {
                     toast("You have successfully registered");
