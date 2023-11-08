@@ -31,6 +31,7 @@ const AddBlog = () => {
     axiosSecure.post("/addblog", newBlog).then((res) => {
       if (res.data.insertedId) {
         toast("Blog successfully added");
+        form.reset();
       }
       
     })
