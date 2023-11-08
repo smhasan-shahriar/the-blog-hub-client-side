@@ -67,11 +67,11 @@ const FeaturedBlogs = () => {
   const nodes = [...featuredBlogsArray];
   console.log(nodes);
   const COLUMNS = [
-    { label: "Serial", renderCell: (item) => item.serial },
+    { label: "Serial No.", renderCell: (item) => item.serial },
     { label: "Blog Title", renderCell: (item) => item.title },
-    { label: "User Name", renderCell: (item) => item.userName },
+    { label: "Blog Owner", renderCell: (item) => item.userName },
     {
-      label: "User Image",
+      label: "Blog Owner's Picture",
       renderCell: (item) => (
         <img className="w-12 h-12 rounded-full" src={item.picture}></img>
       ),

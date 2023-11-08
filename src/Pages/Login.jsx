@@ -21,8 +21,9 @@ const LogIn = () => {
           })
           .then((res) => {
             console.log("token response", res.data);
+            navigate(location?.state ? location.state : "/");
           });
-        navigate(location?.state ? location.state : "/");
+        
         const newUser = result.user;
         const userEntry = {
           userName: newUser.displayName,
@@ -51,13 +52,15 @@ const LogIn = () => {
       .then((result) => {
         console.log(result.user);
         const loggedUser = { email: result.user.email };
-        navigate(location?.state ? location.state : "/");
+        
         axios
           .post("https://the-blog-hub-server.vercel.app/jwt", loggedUser, {
             withCredentials: true,
           })
           .then((res) => {
+
             console.log("token response", res.data);
+            navigate(location?.state ? location.state : "/");
           });
         toast("You have successfully logged in");
       })
