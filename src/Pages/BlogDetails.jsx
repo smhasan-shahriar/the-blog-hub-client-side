@@ -68,8 +68,8 @@ const BlogDetails = () => {
         {title}
       </h2>
       <img className="w-full h-[600px] object-cover" src={image} alt="" />
-      <p className="text-xl font-bold my-4">{short}</p>
-      <p className="text-lg font-medium text-justify">{long}</p>
+      <p className="text-xl font-bold my-4 mx-4">{short}</p>
+      <p className="text-lg font-medium text-justify mx-4">{long}</p>
       {user?.email === email && (
         <div className="text-center">
           <button
@@ -88,7 +88,7 @@ const BlogDetails = () => {
         <hr className="border-2 my-2"/>
         <div>
           {user && user?.email !== email ? (
-            <div>
+            <div className="mx-4">
               <form onSubmit={handlePostComment}>
                 <div className="form-control">
                   <label className="label">
@@ -115,7 +115,7 @@ const BlogDetails = () => {
             </p>
           )}
         </div>
-        <div>
+        <div className="mx-4"> 
           {comments.data.map((comment) => (
             <CommentCard key={comment._id} userComment={comment}></CommentCard>
           ))}

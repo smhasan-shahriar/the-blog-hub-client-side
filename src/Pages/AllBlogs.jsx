@@ -47,7 +47,7 @@ const AllBlogs = () => {
   };
 
   return (
-    <div className="max-w-[1260px] mx-auto my-20">
+    <div className="max-w-[1260px] lg:mx-auto mx-4 my-20">
       <h2 className="text-center font-bold text-3xl">All Blogs</h2>
 
       <div className="h-[50px] rounded-lg lg:text-right my-5">

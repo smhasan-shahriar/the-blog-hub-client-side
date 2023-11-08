@@ -9,15 +9,15 @@ const ProspectiveBlogger = () => {
       <motion.div initial={{ opacity: 0, scale: 0.5 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 2 }}
-       className="flex items-center gap-10">
-        <div className="w-1/3">
+       className="flex flex-col-reverse md:flex-row items-center gap-10">
+        <div className="w-full md:w-1/3">
           <img className="h-[500px] w-full object-cover"
             src="https://i.ibb.co/rZQMSYc/krakenimages-Y5bv-Rlc-Cx8k-unsplash.jpg"
             alt=""
           />
         </div>
-        <div className="w-1/2">
-          <h2 className="font-bold text-6xl">About Us</h2>
+        <div className="w-full md:w-1/2">
+          <h2 className="font-bold text-6xl my-5">About Us</h2>
           <p>
             Welcome to The Blog Hub - Your Gateway to real story. We're a
             passionate team dedicated to sharing our expertise and love for real

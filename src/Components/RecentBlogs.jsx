@@ -24,7 +24,7 @@ const RecentBlogs = () => {
   }
   const { title, image, category, short, long } = data;
   return (
-    <div className="max-w-[1260px] mx-auto my-20">
+    <div className="max-w-[1260px] mx-4 lg:mx-auto my-20">
       <h2 className="text-center font-bold text-3xl">Recent Blogs</h2>
       <div className="grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-5 my-10">
         {data.map((blog) => (
