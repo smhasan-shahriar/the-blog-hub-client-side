@@ -19,13 +19,17 @@ const FeaturedBlogs = () => {
   const featuredBlogs = useQuery({
     queryKey: ["featuredData"],
     queryFn: () =>
-      axios.get("http://localhost:5000/featured").then((res) => res.data),
+      axios
+        .get("https://the-blog-hub-server.vercel.app/featured")
+        .then((res) => res.data),
   });
 
   const users = useQuery({
     queryKey: ["userData"],
     queryFn: () =>
-      axios.get(`http://localhost:5000/users`).then((res) => res.data),
+      axios
+        .get(`https://the-blog-hub-server.vercel.app/users`)
+        .then((res) => res.data),
   });
 
   if (featuredBlogs.isLoading) {

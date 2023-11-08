@@ -17,11 +17,13 @@ const BlogCard = ({ blog }) => {
       const blogId = _id;
       const userEmail = user.email;
       const wishList = { blogId, userEmail };
-      axios.post("http://localhost:5000/wishlist", wishList).then((res) => {
-        if (res.data.insertedId) {
-          toast("Blog added to wishlist successfully");
-        }
-      });
+      axios
+        .post("https://the-blog-hub-server.vercel.app/wishlist", wishList)
+        .then((res) => {
+          if (res.data.insertedId) {
+            toast("Blog added to wishlist successfully");
+          }
+        });
     } else {
       toast("You have to log in to add blog to your wishlist");
     }

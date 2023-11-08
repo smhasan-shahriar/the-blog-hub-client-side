@@ -9,7 +9,9 @@ const AllBlogs = () => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["blogsData"],
     queryFn: () =>
-      axios.get("http://localhost:5000/allblogs").then((res) => res.data),
+      axios
+        .get("https://the-blog-hub-server.vercel.app/allblogs")
+        .then((res) => res.data),
   });
 
   if (isLoading) {

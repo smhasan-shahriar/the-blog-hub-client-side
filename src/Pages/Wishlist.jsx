@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../Hooks/useAuth";
 import WishListCard from "../Components/WishListCard";
 import { toast } from "react-toastify";
@@ -8,17 +8,20 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const Wishlist = () => {
   const { user } = useAuth();
+  const [wishList, setWishList] = useState([]);
   const axiosSecure = useAxiosSecure();
   const allBlogs = useQuery({
     queryKey: ["blogsData"],
     queryFn: () =>
-      axios.get("http://localhost:5000/allblogs").then((res) => res.data),
+      axios
+        .get("https://the-blog-hub-server.vercel.app/allblogs")
+        .then((res) => res.data),
   });
 
   const emailQuery = useQuery({
     queryKey: ["wishlistData"],
     queryFn: () =>
-      axiosSecure.get(`http://localhost:5000/wishlist`).then((res) => res.data),
+      axiosSecure.get(`/wishlist?email=${user.email}`).then((res) => res.data),
   });
 
   if (allBlogs.isLoading) {
@@ -38,10 +41,10 @@ const Wishlist = () => {
   }
   const allBlogsData = allBlogs?.data;
   const wishListData = emailQuery?.data;
-  const userWishList = wishListData?.filter(
-    (item) => item.userEmail === user?.email
-  );
-  const wishListIds = userWishList?.map((item) => item.blogId);
+  // const userWishList = wishListData?.filter(
+  //   (item) => item.userEmail === user?.email
+  // );
+  const wishListIds = wishListData?.map((item) => item.blogId);
   const wishListBlogs = [];
   for (let item of wishListIds) {
     for (let blog of allBlogsData) {
@@ -55,7 +58,7 @@ const Wishlist = () => {
     const email = user.email;
     const myRef = { email };
     console.log(email);
-    fetch(`http://localhost:5000/wishlist/${id}`, {
+    fetch(`https://the-blog-hub-server.vercel.app/wishlist/${id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

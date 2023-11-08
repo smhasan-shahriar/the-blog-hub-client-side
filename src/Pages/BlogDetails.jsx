@@ -14,13 +14,11 @@ const BlogDetails = () => {
   const axiosSecure = useAxiosSecure();
   const blogDetails = useQuery({
     queryKey: ["singleBlogData"],
-    queryFn: () =>
-      axiosSecure.get(`/blogs/${id}`).then((res) => res.data),
+    queryFn: () => axiosSecure.get(`/blogs/${id}`).then((res) => res.data),
   });
   const comments = useQuery({
     queryKey: ["commentsData"],
-    queryFn: () =>
-      axiosSecure.get(`/comments/${id}`).then((res) => res.data),
+    queryFn: () => axiosSecure.get(`/comments/${id}`).then((res) => res.data),
   });
   if (blogDetails.isLoading) {
     return (
@@ -47,14 +45,15 @@ const BlogDetails = () => {
       userName: user.displayName,
       userImage: user.photoURL,
     };
-    axios.post("http://localhost:5000/comments", userComment).then((res) => {
-      if (res.data.insertedId) {
-        toast("Comment successfully posted");
-        comments.refetch();
-      }
-    });
+    axios
+      .post("https://the-blog-hub-server.vercel.app/comments", userComment)
+      .then((res) => {
+        if (res.data.insertedId) {
+          toast("Comment successfully posted");
+          comments.refetch();
+        }
+      });
   };
-  console.log(comments.data);
   return (
     <div className="max-w-[1260px] mx-auto my-20 relative">
       <h2 className="text-center font-bold text-3xl bg-black text-white absolute w-full py-5 z-10 opacity-60">

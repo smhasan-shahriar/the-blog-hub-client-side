@@ -4,8 +4,10 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const UpdateBlog = () => {
+  const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -15,9 +17,13 @@ const UpdateBlog = () => {
     const category = form.category.value;
     const short = form.short.value;
     const long = form.long.value;
+   
     const updatedBlog = { title, image, category, short, long };
-    axios
-      .put(`http://localhost:5000/updateblog/${id}`, updatedBlog)
+    axiosSecure
+      .put(
+        `https://the-blog-hub-server.vercel.app/updateblog/${id}`,
+        updatedBlog
+      )
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           toast("blog updated successfully");
@@ -27,7 +33,9 @@ const UpdateBlog = () => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["singleBlogData"],
     queryFn: () =>
-      axios.get(`http://localhost:5000/blogs/${id}`).then((res) => res.data),
+      axiosSecure
+        .get(`https://the-blog-hub-server.vercel.app/blogs/${id}`)
+        .then((res) => res.data),
   });
   if (isLoading) {
     return (

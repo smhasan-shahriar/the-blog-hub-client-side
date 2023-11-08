@@ -3,6 +3,8 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { toast } from "react-toastify";
 
+
+
 const NavBar = () => {
   
   const { user, logOut } = useAuth()
@@ -11,6 +13,11 @@ const NavBar = () => {
     logOut()
       .then(() => toast("logged out"))
       .catch((error) => console.error(error.message));
+
+
+
+   
+   
   };
   const navLinks = (
     <>

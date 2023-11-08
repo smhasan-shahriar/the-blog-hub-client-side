@@ -7,7 +7,9 @@ const RecentBlogs = () => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["recentBlogsData"],
     queryFn: () =>
-      axios.get("http://localhost:5000/recentblogs").then((res) => res.data),
+      axios
+        .get("https://the-blog-hub-server.vercel.app/recentblogs")
+        .then((res) => res.data),
   });
 
   if (isLoading) {
