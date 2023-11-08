@@ -14,9 +14,12 @@ const RecentBlogs = () => {
 
   if (isLoading) {
     return (
-      <div>
-        <progress className="progress w-56" value="100" max="100"></progress>
-      </div>
+      <div className="w-full h-[80vh] flex justify-center items-center">
+            <span className="loading loading-spinner loading-xs"></span>
+            <span className="loading loading-spinner loading-sm"></span>
+            <span className="loading loading-spinner loading-md"></span>
+            <span className="loading loading-spinner loading-lg"></span>
+          </div>
     );
   }
   const { title, image, category, short, long } = data;

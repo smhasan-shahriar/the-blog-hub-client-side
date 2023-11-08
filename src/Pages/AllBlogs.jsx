@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import BlogCard from "../Components/BlogCard";
+import Skeleton from 'react-loading-skeleton';
 
 const AllBlogs = () => {
   const [filter, setFilter] = useState("");
@@ -16,9 +17,12 @@ const AllBlogs = () => {
 
   if (isLoading) {
     return (
-      <div>
-        <progress className="progress w-56" value="100" max="100"></progress>
-      </div>
+      <div className="w-full h-[80vh] flex justify-center items-center">
+            <span className="loading loading-spinner loading-xs"></span>
+            <span className="loading loading-spinner loading-sm"></span>
+            <span className="loading loading-spinner loading-md"></span>
+            <span className="loading loading-spinner loading-lg"></span>
+          </div>
     );
   }
 
