@@ -2,6 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import { CompactTable } from "@table-library/react-table-library/compact";
+import {
+  Table,
+  Header,
+  HeaderRow,
+  Body,
+  Row,
+  HeaderCell,
+  Cell,
+} from "@table-library/react-table-library/table";
 import { useTheme } from "@table-library/react-table-library/theme";
 import { getTheme } from "@table-library/react-table-library/baseline";
 
@@ -55,35 +64,28 @@ const FeaturedBlogs = () => {
     return null;
   });
   console.log(featuredBlogsArray);
-  const nodes = [
-    {
-     
-      name: "Shopping List 1",
-      type: "TASK",
-      isComplete: true,
-    },
-    {
-     
-      name: "Shopping List 2",
-      type: "TASK",
-      isComplete: true,
-    },
-  ];
+  const nodes = [...featuredBlogsArray];
   console.log(nodes);
   const COLUMNS = [
-    { label: "Serial", renderCell: (item) => item.name },
-
-    { label: "Blog Title", renderCell: (item) => item.type },
-    { label: "User Name", renderCell: (item) => item.type },
-
-    { label: "User Image", renderCell: (item) => item.nodes },
+    { label: "Serial", renderCell: (item) => item.serial },
+    { label: "Blog Title", renderCell: (item) => item.title },
+    { label: "User Name", renderCell: (item) => item.userName },
+    {
+      label: "User Image",
+      renderCell: (item) => (
+        <img className="w-12 h-12 rounded-full" src={item.picture}></img>
+      ),
+    }
   ];
   const data = { nodes };
-
+ const resize = { minWidth: 25 };
   return (
     <div className="max-w-[1260px] mx-auto my-20">
       <h2 className="text-center font-bold text-3xl">Featured Blogs</h2>
-      <CompactTable columns={COLUMNS} data={data} theme={theme} />
+      <div className="my-10">
+        <CompactTable columns={COLUMNS} data={data} theme={theme} />
+        
+      </div>
     </div>
   );
 };
