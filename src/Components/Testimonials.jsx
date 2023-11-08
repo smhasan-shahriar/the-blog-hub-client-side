@@ -12,7 +12,7 @@ const Testimonials = () => {
               <img src="https://i.ibb.co/RyYXmJf/user-em-3.jpg" />
             </div>
           </div>
-          <div className="bg-orange-600 pt-20 pb-10 px-5 text-white">
+          <div className="bg-orange-400 pt-20 pb-10 px-5 text-white">
             <p className="text-center quoted-text text-xl font-semibold italic">The blog Hub consistently delivers insightful and practical content. I've learned so much and find myself coming back for more. Keep up the fantastic work!</p>
             <p className="font-medium text-lg text-center my-5"><span className="text-[#a6ff00] font-bold text-xl">Mr. Rehman</span> CEO of SHEBA</p>
           </div>
@@ -23,7 +23,7 @@ const Testimonials = () => {
               <img src="https://i.ibb.co/gtX45HS/user-em-2.jpg" />
             </div>
           </div>
-          <div className="bg-orange-600 pt-20 pb-10 px-5 text-white">
+          <div className="bg-orange-400 pt-20 pb-10 px-5 text-white">
             <p className="text-center quoted-text text-xl font-semibold italic">The blog hub has become my go-to resource. The engaging articles and valuable tips have improved my life. Thank you for the inspiration and knowledge you provide.</p>
             <p className="font-medium text-lg text-center my-5"><span className="text-[#a6ff00] font-bold text-xl">Ms. Tanya</span> COO of Rodrig Inc.</p>
           </div>
@@ -34,7 +34,7 @@ const Testimonials = () => {
               <img src="https://i.ibb.co/ZN9FYzG/user-em-1.jpg" />
             </div>
           </div>
-          <div className="bg-orange-600 pt-20 pb-10 px-5 text-white">
+          <div className="bg-orange-400 pt-20 pb-10 px-5 text-white">
             <p className="text-center quoted-text text-xl font-semibold italic">I'm a loyal reader because the blog hub offers a perfect blend of information and inspiration. It's my daily dose of wisdom and motivation. Kudos to your fantastic work!</p>
             <p className="font-medium text-lg text-center my-5"><span className="text-[#a6ff00] font-bold text-xl">Ms. Xepher</span> President of Xepher Inc.</p>
           </div>
