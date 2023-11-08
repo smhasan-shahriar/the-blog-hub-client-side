@@ -4,6 +4,7 @@ import NewsLetter from '../Components/NewsLetter';
 import RecentBlogs from '../Components/RecentBlogs';
 import Testimonials from '../Components/Testimonials';
 import ProspectiveBlogger from '../Components/ProspectiveBlogger';
+import { motion } from "framer-motion"
 
 const Home = () => {
     return (

@@ -1,10 +1,15 @@
 import React from "react";
 import { GrArticle, GrBook, GrBriefcase, GrBundle } from "react-icons/gr";
+import { motion } from "framer-motion"
 
 const ProspectiveBlogger = () => {
   return (
+    
     <div className="max-w-[1260px] mx-auto my-20 shadow-xl">
-      <div className="flex items-center gap-10">
+      <motion.div initial={{ opacity: 0, scale: 0.5 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 2 }}
+       className="flex items-center gap-10">
         <div className="w-1/3">
           <img className="h-[500px] w-full object-cover"
             src="https://i.ibb.co/rZQMSYc/krakenimages-Y5bv-Rlc-Cx8k-unsplash.jpg"
@@ -30,7 +35,7 @@ const ProspectiveBlogger = () => {
             be inspired!
           </p>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

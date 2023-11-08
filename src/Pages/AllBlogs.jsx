@@ -86,7 +86,7 @@ const AllBlogs = () => {
           </div>
         </form>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-5 my-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-8 my-20">
         {filter === "" && selectedCategory === ""
           ? data.map((blog) => <BlogCard key={blog._id} blog={blog} />)
           : data

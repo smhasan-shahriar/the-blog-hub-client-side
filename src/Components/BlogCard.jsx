@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion"
 
 const BlogCard = ({ blog }) => {
   const { user } = useAuth();
@@ -29,7 +30,9 @@ const BlogCard = ({ blog }) => {
   };
   return (
     <div>
-      <div className="card card-compact h-[500px] bg-base-100 shadow-xl">
+      <motion.div whileHover={{ scale: 1.1 }}
+  onHoverStart={e => {}}
+  onHoverEnd={e => {}} className="card card-compact h-[500px] bg-base-100 shadow-xl">
         <figure>
           <img className="w-full h-[250px] object-cover" src={image} />
         </figure>
@@ -58,7 +61,7 @@ const BlogCard = ({ blog }) => {
             </button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
