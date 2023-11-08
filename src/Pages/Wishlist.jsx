@@ -4,9 +4,11 @@ import React, { useEffect } from "react";
 import useAuth from "../Hooks/useAuth";
 import WishListCard from "../Components/WishListCard";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const Wishlist = () => {
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const allBlogs = useQuery({
     queryKey: ["blogsData"],
     queryFn: () =>
@@ -16,7 +18,7 @@ const Wishlist = () => {
   const emailQuery = useQuery({
     queryKey: ["wishlistData"],
     queryFn: () =>
-      axios.get(`http://localhost:5000/wishlist`).then((res) => res.data),
+      axiosSecure.get(`http://localhost:5000/wishlist`).then((res) => res.data),
   });
 
   if (allBlogs.isLoading) {
