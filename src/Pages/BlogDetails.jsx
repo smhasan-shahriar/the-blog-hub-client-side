@@ -64,10 +64,12 @@ const BlogDetails = () => {
   };
   return (
     <div className="max-w-[1260px] mx-auto my-20 relative">
-      <h2 className="text-center font-bold text-3xl bg-black text-white absolute w-full py-5 z-10 opacity-60">
-        {title}
-      </h2>
-      <img className="w-full h-[600px] object-cover" src={image} alt="" />
+      <div className="relative">
+        <h2 className="text-center font-bold text-3xl bg-black text-white absolute bottom-0 w-full py-5 z-10 opacity-80">
+          {title}
+        </h2>
+        <img className="w-full h-[600px] object-cover" src={image} alt="" />
+      </div>
       <p className="text-xl font-bold my-4 mx-4">{short}</p>
       <p className="text-lg font-medium text-justify mx-4">{long}</p>
       {user?.email === email && (
