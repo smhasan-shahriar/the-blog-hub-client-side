@@ -78,13 +78,13 @@ const AllBlogs = () => {
             <input
               name="search"
               onChange={handleFilterChange}
-              className="text-sm p-4 md:w-[360px] w-[220px] border"
+              className="text-sm p-[13px] md:w-[360px] w-[220px] border border-r-0"
               type="text"
               placeholder="Search by title"
             />
             <input
               type="submit"
-              className="w-[110px] h-[50px] bg-[#FF444A] text-white rounded-r-lg font-semibold"
+              className="w-[110px] h-[50px] bg-[#FF444A] text-white rounded-r-lg font-semibold btn rounded-none"
               value="Search"
             ></input>
           </div>
