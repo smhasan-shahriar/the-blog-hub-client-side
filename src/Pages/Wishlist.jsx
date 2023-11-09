@@ -74,7 +74,7 @@ const Wishlist = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount) {
-          toast("deleted successfully");
+          toast("successfully deleted from wishlist");
           emailQuery.refetch();
         }
       });
