@@ -15,7 +15,24 @@ import { useTheme } from "@table-library/react-table-library/theme";
 import { getTheme } from "@table-library/react-table-library/baseline";
 
 const FeaturedBlogs = () => {
-  const theme = useTheme(getTheme());
+  const theme = useTheme({
+    Table: `
+        --data-table-library_grid-template-columns: 10% 5fr 3fr 15%;
+      `,
+    HeaderRow: `
+        background-color: #eaf5fd;
+      `,
+    Row: `
+        &:nth-of-type(odd) {
+          background-color: #d2e9fb;
+        }
+
+        &:nth-of-type(even) {
+          background-color: #eaf5fd;
+        }
+      `,
+  });
+  const resize = { resizerHighlight: "#dde2eb", resizerWidth: 25 };
   const featuredBlogs = useQuery({
     queryKey: ["featuredData"],
     queryFn: () =>
@@ -71,25 +88,53 @@ const FeaturedBlogs = () => {
   });
   console.log(featuredBlogsArray);
   const nodes = [...featuredBlogsArray];
-  console.log(nodes);
-  const COLUMNS = [
-    { label: "Serial No.", renderCell: (item) => item.serial },
-    { label: "Blog Title", renderCell: (item) => item.title },
-    { label: "Blog Owner", renderCell: (item) => item.userName },
-    {
-      label: "Blog Owner's Picture",
-      renderCell: (item) => (
-        <img className="w-12 h-12 rounded-full object-cover" src={item.picture}></img>
-      ),
-    },
-  ];
+  // console.log(nodes);
+  // const COLUMNS = [
+  //   { label: "Serial No.", renderCell: (item) => item.serial },
+  //   { label: "Blog Title", renderCell: (item) => item.title },
+  //   { label: "Blog Owner", renderCell: (item) => item.userName },
+  //   {
+  //     label: "Blog Owner's Picture",
+  //     renderCell: (item) => (
+  //       <img className="w-12 h-12 rounded-full object-cover" src={item.picture}></img>
+  //     ),
+  //   },
+  // ];
   const data = { nodes };
-  const resize = { minWidth: 25 };
+  
   return (
-    <div className="max-w-[1260px] mx-auto my-20">
+    <div className="max-w-[1260px] lg:mx-auto mx-4 my-20">
       <h2 className="text-center font-bold text-3xl">Featured Blogs</h2>
       <div className="my-10">
-        <CompactTable columns={COLUMNS} data={data} theme={theme} />
+        {/* <CompactTable columns={COLUMNS} data={data} theme={theme} /> */}
+        <Table data={data} theme={theme} layout={{ custom: true, horizontalScroll: true }}>
+      {(tableList) => (
+        <>
+          <Header>
+            <HeaderRow>
+              <HeaderCell  resize={resize}>Serial No.</HeaderCell>
+              <HeaderCell  resize={resize}>Blog Name</HeaderCell>
+              <HeaderCell  resize={resize}>Blog Owner</HeaderCell>
+              <HeaderCell  resize={resize}>Blog Owner's <br /> Picture</HeaderCell>
+            </HeaderRow>
+          </Header>
+
+          <Body>
+            {tableList.map((item) => (
+              <Row key={item.id} item={item}>
+                <Cell>{item.serial}</Cell>
+                <Cell>{item.title}</Cell>
+                <Cell>{item.userName}</Cell>
+                <Cell><img className="w-12 h-12 rounded-full object-cover" src={item.picture}></img></Cell>
+                
+                
+      
+              </Row>
+            ))}
+          </Body>
+        </>
+      )}
+    </Table>
       </div>
     </div>
   );
