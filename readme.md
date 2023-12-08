@@ -7,4 +7,10 @@ The project named “The Blog Hub” facilitates users to look through an insigh
 - **Comment on Blogs:** The project allows users to comment on any blog except the one which is written by him/her. The users can also see the comments posted by other users.
 - **Wishlist:** Any logged in user can add any blog to the wishlist by pressing the "Add to Wishlist" button on the blogs card on recent blogs section in homepage or in All Blogs page.
 - **Update Blog:** The author of the blog has the option to update the blog if necessary. 
-- **Featured Blog:** Users can take a quick look at the 10 featured blog at the featured blog page. They can see the title of the blog and user name. 
+- **Featured Blog:** Users can take a quick look at the 10 featured blog at the featured blog page. They can see the title of the blog and user name.
+
+💻 Technologies Used:
+- **React**: for building dynamic user interfaces.
+- **Tailwind CSS**: for utility-first styling.
+- **Express.js**: for building the server-side of web applications.
+- **MongoDB**: for database management.
