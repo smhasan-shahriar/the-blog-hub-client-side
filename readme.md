@@ -8,6 +8,7 @@ The project named “The Blog Hub” facilitates users to look through an insigh
 - **Wishlist:** Any logged in user can add any blog to the wishlist by pressing the "Add to Wishlist" button on the blogs card on recent blogs section in homepage or in All Blogs page.
 - **Update Blog:** The author of the blog has the option to update the blog if necessary. 
 - **Featured Blog:** Users can take a quick look at the 10 featured blog at the featured blog page. They can see the title of the blog and user name.
+- **Subscribe:** Readers who want to subscribe can fill in the form with their email. As soon as they submit the form, they will get a confirmation email. 
 
 💻 Technologies Used:
 - **React**: for building dynamic user interfaces.
